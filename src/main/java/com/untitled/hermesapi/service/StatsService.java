@@ -497,6 +497,10 @@ public class StatsService {
                                      Map<Long, NavigableMap<LocalDate, BigDecimal>> cumulative) {
 
         BigDecimal balanceAt(Account account, LocalDate date) {
+            // Le compte n'existait pas encore : il ne compte pas dans le patrimoine
+            if (date.isBefore(account.getOpeningDate())) {
+                return BigDecimal.ZERO;
+            }
             BigDecimal balance = account.getInitialBalance().add(before.getOrDefault(account.getId(), BigDecimal.ZERO));
             NavigableMap<LocalDate, BigDecimal> running = cumulative.get(account.getId());
             if (running != null) {
