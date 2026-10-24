@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: hermes-db
+      POSTGRES_PASSWORD: hermes
+      POSTGRES_USER: hermes
+    ports:
+      - "5432:5432"
