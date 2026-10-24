@@ -64,7 +64,7 @@ public class AccountTypeService {
     public void delete(Long id) {
         AccountType type = find(id);
         if (accountRepository.existsByAccountType_Id(id)) {
-            throw new BadRequestException("Ce type est utilisé par au moins un compte");
+            throw new BadRequestException("Ce type est utilisé par au moins un compte : changez d'abord le type de ces comptes");
         }
         accountTypeRepository.delete(type);
     }
